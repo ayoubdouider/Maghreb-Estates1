@@ -2,15 +2,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --green:       #243324;
-  --green-mid:   #3a5c3a;
+  --green:       #1C2E1D;
+  --green-mid:   #34522e;
   --green-light: #e8f0e8;
-  --cream:       #f0ebe1;
-  --cream-dark:  #e4ddd0;
+  --cream:       #F5F1E8;
+  --cream-dark:  #ece7db;
   --white:       #ffffff;
-  --text:        #243324;
-  --text-muted:  #5a6b5a;
-  --border:      #d8d0c3;
+  --text:        #1C2E1D;
+  --text-muted:  #55685a;
+  --border:      #d8d1c4;
 
   --font-serif:  'Cormorant Garamond', Georgia, serif;
   --font-sans:   'Jost', system-ui, sans-serif;
@@ -110,6 +110,12 @@ em { font-style: italic; color: var(--green-mid); }
 .btn--full { width: 100%; text-align: center; }
 
 /* ===== LOGO ===== */
+.nav__logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
 .logo-word {
   font-family: var(--font-serif);
   font-size: 22px;
@@ -263,34 +269,6 @@ em { font-style: italic; color: var(--green-mid); }
   50% { opacity: 0.4; transform: scaleY(0.7); }
 }
 
-/* ===== INTRO STRIP ===== */
-.intro-strip {
-  background: var(--green);
-  padding: 28px 0;
-}
-
-.intro-strip__grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-}
-
-.intro-strip__item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(240,235,225,0.9);
-  font-size: 13px;
-  letter-spacing: 0.03em;
-}
-
-.intro-strip__icon {
-  font-size: 6px;
-  color: rgba(240,235,225,0.4);
-}
-
 /* ===== SECTIONS ===== */
 .section {
   padding: var(--section-pad) 0;
@@ -299,6 +277,7 @@ em { font-style: italic; color: var(--green-mid); }
 .section--dark {
   background: var(--green);
   color: var(--cream);
+  margin-top: 48px;
 }
 
 .section--tinted {
@@ -846,7 +825,6 @@ cite {
   .container { padding: 0 20px; }
 
   .cards { grid-template-columns: 1fr; }
-  .intro-strip__grid { gap: 20px; flex-direction: column; align-items: flex-start; padding: 0 20px; }
   .personas { grid-template-columns: 1fr; }
 
   .hero__inner { padding-top: 40px; padding-bottom: 60px; }

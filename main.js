@@ -14,11 +14,11 @@ mobileMenu?.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => mobileMenu.classList.remove('open'));
 });
 
-// Contact form — basic validation + fake submit
+// Contact form — validation + Web3Forms submit
 const form = document.getElementById('contactForm');
 const successMsg = document.getElementById('formSuccess');
 
-form?.addEventListener('submit', (e) => {
+form?.addEventListener('submit', async (e) => {
   e.preventDefault();
   let valid = true;
 
@@ -36,12 +36,29 @@ form?.addEventListener('submit', (e) => {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Versturen...';
 
-  // Simulate async send (replace with real endpoint / Formspree / Netlify Forms)
-  setTimeout(() => {
-    form.reset();
-    submitBtn.style.display = 'none';
-    successMsg?.classList.add('visible');
-  }, 900);
+  const data = new FormData(form);
+  data.append('access_key', 'd6036cc9-cfb2-4eb0-865b-e37998a27d6e');
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+    if (json.success) {
+      form.reset();
+      submitBtn.style.display = 'none';
+      successMsg?.classList.add('visible');
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Verstuur bericht';
+      alert('Er ging iets mis. Probeer het opnieuw.');
+    }
+  } catch {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Verstuur bericht';
+    alert('Er ging iets mis. Probeer het opnieuw.');
+  }
 });
 
 // Remove error state on input
